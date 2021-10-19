@@ -25,76 +25,15 @@ volatile int flag = 0;
 int sockfd = 0;
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
-void check(int exp, const char *msg){
-    if (exp == SOCKETERROR){
-        perror(msg);
-        exit(1);
-    }
-}
-
-void str_overwrite_stdout(){
-    printf("\r%s", "> ");
-    fflush(stdout);
-};
-
-void str_trim_lf(char *arr, int length){
-    for (int i = 0; i < length; ++i){
-        if (arr[i] == '\n'){
-            arr[i] = '\0';
-            break;
-        }
-    }
-};
-
 void catch_ctrl_c_and_exit(int sig){
     flag = 1;
 }
 
-void* send_msg_handler(){
-    
-    char buffer[BUFSIZE];
-
-    while (true){
-        str_overwrite_stdout();
-        fgets(buffer, BUFSIZE, stdin);
-        str_trim_lf(buffer, BUFSIZE);
-
-        if (strcmp(buffer, "exit") == 0){
-            break;
-        }
-        else{
-            send(sockfd, buffer, strlen(buffer), 0);
-        }
-
-        bzero(buffer, BUFSIZE);
-
-    }
-    catch_ctrl_c_and_exit(2);
-    pthread_detach(pthread_self());
-    return NULL;
-
-};
-
-void* recv_msg_handler(){
-    char msg[BUFSIZE+NAMELENGTH];
-
-    while (1){
-        int bytesIn = recv(sockfd, msg , BUFSIZE+NAMELENGTH, 0);
-        if (bytesIn > 0){
-            printf("%s\n", msg);
-            str_overwrite_stdout();
-        }
-        else if (bytesIn == 0){
-            break; // disconnected
-        }
-
-        bzero(msg, BUFSIZE+NAMELENGTH);
-    }
-    pthread_detach(pthread_self());
-    return NULL;
-};
-
-
+void check(int exp, const char *msg);
+void str_overwrite_stdout();
+void str_trim_lf(char *arr, int length);
+void* send_msg_handler();
+void* recv_msg_handler();
 
 int main(int argc, char** argv){
     int portno;
@@ -154,10 +93,65 @@ int main(int argc, char** argv){
             break;
         }
     }
-
     close(sockfd);
     return 0;
-
-
-
 }
+
+void check(int exp, const char *msg){
+    if (exp == SOCKETERROR){
+        perror(msg);
+        exit(1);
+    }
+};
+
+void str_overwrite_stdout(){
+    printf("\r%s", "> ");
+    fflush(stdout);
+};
+
+void str_trim_lf(char *arr, int length){
+    for (int i = 0; i < length; ++i){
+        if (arr[i] == '\n'){
+            arr[i] = '\0';
+            break;
+        }
+    }
+};
+
+void* send_msg_handler(){
+    char buffer[BUFSIZE];
+    while (true){
+        str_overwrite_stdout();
+        fgets(buffer, BUFSIZE, stdin);
+        str_trim_lf(buffer, BUFSIZE);
+
+        if (strcmp(buffer, "exit") == 0){
+            break;
+        }
+        else{
+            send(sockfd, buffer, strlen(buffer), 0);
+        }
+        bzero(buffer, BUFSIZE);
+    }
+    catch_ctrl_c_and_exit(2);
+    pthread_detach(pthread_self());
+    return NULL;
+};
+
+void* recv_msg_handler(){
+    char msg[BUFSIZE+NAMELENGTH];
+    while (1){
+        int bytesIn = recv(sockfd, msg , BUFSIZE+NAMELENGTH, 0);
+        if (bytesIn > 0){
+            printf("%s\n", msg);
+            str_overwrite_stdout();
+        }
+        else if (bytesIn == 0){
+            break; // disconnected
+        }
+        bzero(msg, BUFSIZE+NAMELENGTH);
+    }
+    pthread_detach(pthread_self());
+    return NULL;
+};
+
