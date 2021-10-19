@@ -157,7 +157,6 @@ void handle_connection(int client_socket, fd_set *current_sockets){
         else{
             // ctrl + c before naming, just do nothing
         }
-        
         close(client_socket);
         FD_CLR(client_socket, current_sockets);
     }
