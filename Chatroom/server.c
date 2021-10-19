@@ -56,6 +56,8 @@ int main(int argc, char *argv[]){
         ready_sockets = current_sockets;
 
         // Arguments: 2nd for reading, 3rd for writing, 4th for error, 5th for timeout
+        // Specify 0 as the time if you want to find out which descriptors are ready without waiting if none are ready.
+        // Passing a null pointer for timeout means to block indefinitely until one of the file descriptors is ready.
         if (select(FD_SETSIZE, &ready_sockets, NULL, NULL, 0) < 0) {
             perror("select error");
             exit(EXIT_FAILURE);
