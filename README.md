@@ -1,6 +1,6 @@
 # Socket_Programming
 
-## Chatroom server**
+## Chatroom server
 
 Use one thread to listen to multiple connetions
 
