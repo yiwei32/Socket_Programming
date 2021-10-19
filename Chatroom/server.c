@@ -53,7 +53,6 @@ int main(int argc, char *argv[]){
     
 
     while (1){
-        // temporary copy, becuase select can change the status;
         ready_sockets = current_sockets;
 
         // Arguments: 2nd for reading, 3rd for writing, 4th for error, 5th for timeout
