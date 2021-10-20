@@ -22,7 +22,7 @@ typedef struct{
 }clientInfo;
 // Global variables
 
-clientInfo ClientList[BACKLOG + 3];
+clientInfo ClientList[BACKLOG + 4];
 int ClientCount = 0;
 int server_socket = 0;
 
