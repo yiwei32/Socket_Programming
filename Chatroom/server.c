@@ -16,7 +16,7 @@
 #define SOCKETERROR -1
 
 
-typedef struct{
+typedef struct clientInfo{
     char* name;
     bool isNamed;
 }clientInfo;
