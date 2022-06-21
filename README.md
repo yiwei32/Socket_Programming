@@ -1,6 +1,6 @@
 # Socket_Programming
 
-## Chatroom server
+## Chatroom server (I/O multiplexing)
 
 Use one thread to listen to multiple connetions.
 I/O multiplexing is the capability to tell the kernel that we want to be notified if one or more I/O conditions are ready, like input is ready to be read, or descriptor is capable of taking more output.
