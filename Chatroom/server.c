@@ -22,7 +22,7 @@ typedef struct clientInfo{
 }clientInfo;
 // Global variables
 
-clientInfo ClientList[BACKLOG + 4];
+clientInfo ClientList[BACKLOG + 4]; // fd number used as index, so starting from index 4 (0-2 for stdin, stdout, stderr, and 3 for server)
 int ClientCount = 0;
 int server_socket = 0;
 
