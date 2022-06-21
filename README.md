@@ -7,11 +7,11 @@ I/O multiplexing is the capability to tell the kernel that we want to be notifie
 
 Scenarios is which I/O multiplexing is used -
 
-When client is handling multiple descriptors (like standard input and network socket).
-When client handles multiple sockets at the same time, example - Web client.
-When TCP server handles both listening and its connected sockets.
-When server handles both TCP and UDP.
-When server handles multiple services and perhaps multiple protocols.
+1. When client is handling multiple descriptors (like standard input and network socket).
+2. When client handles multiple sockets at the same time, example - Web client.
+3. When TCP server handles both listening and its connected sockets.
+4. When server handles both TCP and UDP.
+5. When server handles multiple services and perhaps multiple protocols.
 
 ## References
 
@@ -24,3 +24,5 @@ https://youtu.be/dquxuXeZXgo
 https://youtu.be/fNerEo6Lstw
 
 https://github.com/lovenery/c-chatroom
+
+https://www.thedailyprogrammer.com/2016/09/network-programming-io-multiplexing.html
