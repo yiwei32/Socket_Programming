@@ -2,19 +2,17 @@
 
 ## Server without threads
 
-## Server with treads
+Without threads, each connection waits for the one that arrived first to finish.
 
-## Server with tread pool
+## Server with threads
+With threads, each connection does NOT need to wait for the one that arrived first to finish. Each of these threads, however, requires memory and CPU time. At some point, more threads are not gonna help and start killing the performance. Creating threads takes a little time. We can save some of that time by reusing the threads we create for future connection.
+
+
+## Server with thread pool
 Rather than creating a new thread for each connection that comes in, we have a set of threads we created at the begining. As works come in, we hand them to one of the threads. If there's no threads available, then that work just waits until there is a thread available. This allows us to do things at once and ensures that we don't create an unbounded number of threads.
 
 Downsides:
 The treads in thread pool are busily checking if there is more work, even when there's nothing to do. This is going to burn CPU cycles over and over again. To fix this, we need a conditional variable.
-
-## Discussion
-
-Without threads, each connection waits for the one that arrived first to finish.
-However, each of these threads requires memory and CPU time. At some point, more threads are not gonna help and start killing the performance.
-Creating threads takes a little time. We can save some of that time by reusing the threads we create for future connection.
 
 
 ## Reference
