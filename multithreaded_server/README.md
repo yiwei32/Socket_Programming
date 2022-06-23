@@ -1,4 +1,4 @@
-# Multi-threaded Server
+# Multi-threaded server
 
 ## Server without threads
 
@@ -25,7 +25,7 @@ How things actually work with condition variable:
 * Once Conditional Variable get signaled then Thread 1 which was waiting for it resumes. It then acquires the mutex lock again and checks if the condition associated with Condition Variable is actually met or if it is superiors call. If more than one thread was waiting then notify_one will unblock only one thread.
 * If it was a superiors call then it again calls the wait() function. 
 
-## Reference
+## References
 
 1. https://www.youtube.com/watch?v=Pg_4Jz8ZIH4
 2. https://thispointer.com/c11-multithreading-part-7-condition-variables-explained/
