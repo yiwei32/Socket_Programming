@@ -15,8 +15,7 @@ However, the treads in thread pool are busily checking if there is more work, ev
 
 ## Condiction variable
 
-let threads wait until something happens and it can do useful work.
-waiting thread is going to wait until another thread call signal
+Condition variable lets threads wait until something happens and it can do useful work. Threads are going to wait if there's no new work in queue.
 
 ## Reference
 
