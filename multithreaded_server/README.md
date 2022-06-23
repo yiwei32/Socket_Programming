@@ -11,8 +11,12 @@ With threads, each connection does NOT need to wait for the one that arrived fir
 ## Server with thread pool
 Rather than creating a new thread for each connection that comes in, we have a set of threads we created at the begining. As works come in, we hand them to one of the threads. If there's no threads available, then that work just waits until there is a thread available. This allows us to do things at once and ensures that we don't create an unbounded number of threads.
 
-However, the treads in thread pool are busily checking if there is more work, even when there's nothing to do. This is going to burn CPU cycles over and over again. To fix this, we need a conditional variable.
+However, the treads in thread pool are busily checking if there is more work, even when there's nothing to do. This is going to burn CPU cycles over and over again. To fix this, we need a condition variable.
 
+## Condiction variable
+
+let threads wait until something happens and it can do useful work.
+waiting thread is going to wait until another thread call signal
 
 ## Reference
 
