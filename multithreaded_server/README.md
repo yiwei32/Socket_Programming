@@ -1,4 +1,4 @@
-# Multithreaded Server
+# Multi-threaded Server
 
 ## Server without threads
 
