@@ -13,7 +13,7 @@ Rather than creating a new thread for each connection that comes in, we have a s
 
 However, the treads in thread pool are busily checking if there is more work, even when there's nothing to do. This is going to burn CPU cycles over and over again. To fix this, we need a condition variable.
 
-## Condiction variable
+## Condition variable
 
 Condition Variable is a kind of Event used for signaling between two or more threads. One or more thread can wait on it to get signaled, while an another thread can signal this. Condition variable lets threads wait until something happens and it can do useful work. Threads are going to wait if there's no new work in queue.
 
